@@ -14,11 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
 from django.urls import include, path
 
+from insta.views import HellowWord
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('insta/', include('insta.urls')), #当你传进来的url，如果它的path是以insta开头的，那就include，就去找到另一个app的url，这个app叫做insta，即insta下面的url
-    #告诉global的url的config
+    path('', HellowWord.as_view(), name='HellowWord'), #当你传进来一个empty string（什么都不输入的时候）的时候，访问到HelloWord的view，调用as_view这个函数
+    #由于这个view继承了TemplateView，所以TemplateView的as_view会继承下来
 ]
